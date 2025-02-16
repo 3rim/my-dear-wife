@@ -94,20 +94,30 @@
 
 <body>
 <h1>💖 My dear Wife, I love you, <span th:text="${name}"></span>! 💖</h1>
-<p class="romantic-text">
+<!--<p class="romantic-text">
    Besa my dear Wife, if you ever feel lonely or sad, remember that I will always love you, even when we're far apart. No distance can ever change how I feel for you. 💕
-</p>
+</p>-->
 
+<p class="romantic-text">
+    My love,
+    I wish I could magically take away all your pain and discomfort. It hurts me to see you unwell. Please rest, and remember that you are never alone. Soon, you will feel better again. Until then, I am holding your hand—always in my heart and right by your side.
+    I love you endlessly. Get well soon, my angel. ❤️✨
+</p>
 <br><br>
 <button onclick="createKiss()">💖 Show Love</button>
 <button onclick="rainFlowers()">🌸 I want flowers</button>
 <button onclick="giveHug()">🤗 Give Hug</button>
+<button onclick="getWell()">🙏❤️ Get Well</button>
 
 <div id="kiss-container"></div>
 
 <!-- Hug GIF Display -->
 <div id="hug-display">
     <img id="hug-image" src="assets/hug-1.gif" alt="Hug GIF">
+</div>
+
+<div id="get-well-display">
+    <img id="get-well-image" src="assets/tea.gif" alt="Get Well Soon GIF">
 </div>
 
 <script>
@@ -120,6 +130,25 @@
     // Array of Hug GIFs
     let hugGifs = ['assets/hug-1.gif', 'assets/hug-2.gif', 'assets/hug-3.gif'];  // Add other GIFs here
     let currentGifIndex = 0;  // Starting index
+
+    let getWellGifs = ['assets/tea.gif', 'assets/drink-water-penguin.gif', 'assets/get-well-soon.gif'];
+    let getWellGifIndex = 0;  // Start from the first one
+
+    function getWell() {
+        let getWellDisplay = document.getElementById("get-well-display");
+        let getWellImage = document.getElementById("get-well-image");
+
+        // Cycle through the get-well GIFs
+        getWellGifIndex = (getWellGifIndex + 1) % getWellGifs.length;
+        getWellImage.src = getWellGifs[getWellGifIndex];
+
+        getWellDisplay.style.display = "block"; // Show the image
+
+        // Hide after 4 seconds
+        setTimeout(() => {
+            getWellDisplay.style.display = "none";
+        }, 4000);
+    }
 
     // Function to create a random kiss
     function createKiss() {
