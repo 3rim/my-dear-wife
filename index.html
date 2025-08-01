@@ -1,257 +1,266 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>I love my wife</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            background-image: url('assets/mekka3.jpg');
-            background-size: 100% auto;
-            background-position: center;
-            background-attachment: fixed;
-            color: #fff;
-        }
-        
-        #kiss-container {
-            position: relative;
-            margin-top: 20px;
-            font-size: 2rem;
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-        .kiss, .flower {
-            position: absolute;
-            display: inline-block;
-            animation: pop 0.3s ease-out;
-        }
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        /*#get-well-display {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 9999;
-        max-width: 400px;
-    }*/
+  <meta charset="UTF-8" />
+  <title>Happy Birthday My Love</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-image: url('assets/romantic-sunset.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
 
-        /* Fancy Show Love and Flower Buttons */
-        button {
-            background: linear-gradient(45deg, #ff4081, #ff80ab);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 15px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
+    h1 {
+      font-size: 2.5rem;
+      color: #ff4081;
+      margin-top: 50px;
+    }
 
-        button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #ff80ab, #ff4081);
-        }
+    .romantic-text {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #ffd1e1;
+      margin: 20px auto;
+      max-width: 600px;
+    }
 
-        button:focus {
-            outline: none;
-        }
+    #birthday-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 6rem;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.5s ease;
+    }
 
-        .romantic-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #d04f91;
-            margin-top:10px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    #birthday-box:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #ff4081;
-            margin-bottom: 10px;
-        }
+    #message-wrapper {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1001;
+      display: none;
+    }
 
-        img {
-            width: 50%;
-            max-width: 400px;
-            border-radius: 10px;
-        }
+    #birthday-message {
+      background: rgba(255, 255, 255, 0.95);
+      color: #ff4081;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      animation: popIn 2s ease-out;
+    }
 
-        /* Hug GIF */
-        #hug-display {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            max-width: 400px;
-        }
+    #birthday-message h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
 
-        #hug-display img {
-            width: 100%;
-            height: auto;
-        }
-    </style>
+    #birthday-message p {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    #delayed-line,
+    #auto-note,
+    #heart {
+      display: none;
+    }
+
+    #delayed-line {
+      color: #333;
+      font-size: 1.2rem;
+      margin-top: 15px;
+    }
+
+    #auto-note {
+      font-style: italic;
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    #heart {
+      font-size: 3rem;
+      margin-top: 20px;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff4081, #ff80ab);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #love-note {
+      display: none;
+      max-width: 600px;
+      margin: 20px auto;
+      color: #fff;
+      font-style: italic;
+    }
+
+    a.credit {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      opacity: 0.8;
+      animation: fall 3s linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      80% {
+        transform: scale(0.98);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
-
 <body>
-<h1>💖 Meine liebe Frau, Eid Mubarak, <span th:text="${name}"></span>! 💖</h1>
-<!--<p class="romantic-text">
-   Besa my dear Wife, if you ever feel lonely or sad, remember that I will always love you, even when we're far apart. No distance can ever change how I feel for you. 💕
-</p>-->
+  <h1>💖 Happy Birthday, meine Liebe 💖</h1>
 
-<p class="romantic-text">
-    Meine Liebe, an diesem gesegneten Tag von Eid bete ich für dein Glück, deine Gesundheit und unendliche Freude.
-    Möge dieses Eid dir Frieden, Wohlstand und unzählige wunderschöne Momente bringen.
-    Du bist mein größter Segen, und ich bin so dankbar, diesen besonderen Tag mit dir zu teilen.
-    Ich wünschte ich könnte dieses Tag live mit dir an deiner Seite verbringen. InshaAllah gewährt uns Allah diese Freude im nächsten 
-    Ramadan❤️✨
-    <br>
-    Möge Allah dein Fasten und deine Gebete annehmen.  
-</p>
-<br><br>
-<button onclick="createKiss()">💖 Show Love</button>
-<button onclick="rainFlowers()">🌸 I want flowers</button>
-<button onclick="giveHug()">🤗 Give Hug</button>
-<!--<button onclick="getWell()">🙏❤️ Get Well</button>-->
+  <p class="romantic-text">
+    Möge Allah dir Frieden, Glück und ein wunderschönes neues Lebensjahr schenken.
+    Ich danke Allah für dich – du bist mein größter Segen. ❤️✨
+  </p>
 
-<div id="kiss-container"></div>
+  <!-- 🎁 Birthday Box -->
+  <div id="birthday-box" onclick="openBirthdayBox()">🎁</div>
 
-<!-- Hug GIF Display -->
-<div id="hug-display">
-    <img id="hug-image" src="assets/hug-1.gif" alt="Hug GIF">
-</div>
-<!-- 
-<div id="get-well-display">
-    <img id="get-well-image" src="assets/tea.gif" alt="Get Well Soon GIF">
-</div> -->
+  <!-- 🎉 Message and Sync visuals -->
+  <div id="message-wrapper">
+    <div id="birthday-message">
+      <h2>🎉 Happy Birthday, meine Liebe! 🎉</h2>
+      <p>
+        Du bist das schönste Geschenk in meinem Leben. <br />
+        Ich liebe dich unendlich. ❤️
+      </p>
+      <img src="assets/cake.gif" style="width: 200px; margin-top: 20px;" alt="Cake" />
 
-<script>
-    // List of romantic emojis for kisses
-    const romanticEmojis = ["❤️", "😙", "👩‍❤️‍👨", "💞", "💞"];
+      <p id="delayed-line">Und ich werde dich für immer lieben. 💞</p>
+      <p id="auto-note">Du bist mein Herz, mein Zuhause, mein Licht.</p>
+      <div id="heart">❤️</div>
+    </div>
+  </div>
 
-    // List of different flower emojis
-    const flowerEmojis = ["🌸", "🌹", "💐", "🌷", "🌺", "🌼"];
+  <!-- 💌 Love Note Button -->
+  <button onclick="toggleNote()">💌 Für dich</button>
+  <p id="love-note">
+    Ich danke Allah jeden Tag dafür, dass du in meinem Leben bist. <br />
+    Du bist mein Zuhause, mein Ruhepol und mein größtes Geschenk. <br />
+    Ich verspreche, dich jeden Tag aufs Neue zu lieben. 🌙❤️
+  </p>
 
-    // Array of Hug GIFs
-    let hugGifs = ['assets/hug-1.gif', 'assets/hug-2.gif', 'assets/hug-3.gif'];  // Add other GIFs here
-    let currentGifIndex = 0;  // Starting index
+  <!-- 🎵 Audio -->
+  <audio id="birthday-audio" src="assets/happy-birthday-piano.mp3" preload="auto"></audio>
 
-    //let getWellGifs = ['assets/tea.gif', 'assets/drink-water-penguin.gif', 'assets/get-well-soon.gif'];
-    //let getWellGifIndex = 0;  // Start from the first one
+  <!-- 📸 Credit -->
+  <a class="credit" href="https://pngtree.com/freebackground/majestic-view-of-kaaba-in-mecca-during-sunset_15990382.html" target="_blank">
+    Background: pngtree.com
+  </a>
 
-    /*
-    function getWell() {
-      //  let getWellDisplay = document.getElementById("get-well-display");
-        let getWellImage = document.getElementById("get-well-image");
+  <script>
+    function openBirthdayBox() {
+      document.getElementById('message-wrapper').style.display = 'block';
+      document.getElementById('birthday-audio').play();
 
-        // Cycle through the get-well GIFs
-        getWellGifIndex = (getWellGifIndex + 1) % getWellGifs.length;
-        getWellImage.src = getWellGifs[getWellGifIndex];
+      // 🎉 Confetti at 3s
+      setTimeout(() => createConfetti(), 3000);
 
-        getWellDisplay.style.display = "block"; // Show the image
+      // ✨ Extra romantic line at 6s
+      setTimeout(() => {
+        document.getElementById('delayed-line').style.display = 'block';
+      }, 6000);
 
-        // Hide after 4 seconds
-        setTimeout(() => {
-            getWellDisplay.style.display = "none";
-        }, 4000);
-    }*/
+      // 💌 Note auto-appears at 12s
+      setTimeout(() => {
+        document.getElementById('auto-note').style.display = 'block';
+      }, 12000);
 
-    // Function to create a random kiss
-    function createKiss() {
-        let kiss = document.createElement("span");
-        kiss.className = "kiss";
+      // ❤️ Heart at 25s
+      setTimeout(() => {
+        document.getElementById('heart').style.display = 'block';
+      }, 25000);
 
-        // Pick a random emoji from the list
-        const randomEmoji = romanticEmojis[Math.floor(Math.random() * romanticEmojis.length)];
-        kiss.innerHTML = randomEmoji;
-
-        // Get the container element
-        let container = document.getElementById("kiss-container");
-        let containerWidth = container.offsetWidth;
-        let containerHeight = container.offsetHeight;
-
-        // Generate random positions within the container's bounds
-        let randomX = Math.random() * containerWidth;
-        let randomY = Math.random() * containerHeight;
-
-        // Set the random position of the kiss
-        kiss.style.left = `${randomX}px`;
-        kiss.style.top = `${randomY}px`;
-
-        // Append the kiss to the container
-        container.appendChild(kiss);
-
-        // Apply animation
-        setTimeout(() => {
-            kiss.style.animation = "pop 0.3s ease-out";
-        }, 10); // Delay the animation to apply it after the element is added
+      // 🕊️ Fade everything out at 44s
+      setTimeout(() => {
+        document.getElementById('message-wrapper').style.display = 'none';
+        document.getElementById('delayed-line').style.display = 'none';
+        document.getElementById('auto-note').style.display = 'none';
+        document.getElementById('heart').style.display = 'none';
+      }, 44000);
     }
 
-    // Function to create a "rain of flowers"
-    function rainFlowers() {
-        let flower = document.createElement("span");
-        flower.className = "flower";
-
-        // Pick a random flower emoji from the list
-        const randomFlower = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
-        flower.innerHTML = randomFlower;
-
-        // Get the container element
-        let container = document.getElementById("kiss-container");
-        let containerWidth = container.offsetWidth;
-        let containerHeight = container.offsetHeight;
-
-        // Generate random positions within the container's bounds
-        let randomX = Math.random() * containerWidth;
-        let randomY = Math.random() * containerHeight;
-
-        // Set the random position of the flower
-        flower.style.left = `${randomX}px`;
-        flower.style.top = `${randomY}px`;
-
-        // Append the flower to the container
-        container.appendChild(flower);
-
-        // Apply animation for flower "falling effect"
-        setTimeout(() => {
-            flower.style.animation = "pop 0.3s ease-out";
-        }, 10); // Delay the animation to apply it after the element is added
+    function toggleNote() {
+      const note = document.getElementById('love-note');
+      note.style.display = note.style.display === 'none' ? 'block' : 'none';
     }
 
-    // Function to show the Hug GIF and rotate through them
-    function giveHug() {
-        let hugDisplay = document.getElementById("hug-display");
-        let hugImage = document.getElementById("hug-image");
-
-        // Change the source of the image to the next GIF
-        currentGifIndex = (currentGifIndex + 1) % hugGifs.length;  // Cycle through the GIFs
-        hugImage.src = hugGifs[currentGifIndex];
-
-        hugDisplay.style.display = "block";  // Show the hug display
-
-        // Hide the hug display after 3 seconds
-        setTimeout(() => {
-            hugDisplay.style.display = "none";
-        }, 3000);  // Display the hug for 3 seconds
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        let confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.top = `-${Math.random() * 20}px`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+        confetti.style.animationDuration = `${2 + Math.random() * 3}s`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
     }
-</script>
-
-<div style="position: fixed; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">
-    <a href="https://pngtree.com/freebackground/majestic-view-of-kaaba-in-mecca-during-sunset_15990382.html" target="_blank" style="color: white; font-size: 0.8rem; text-decoration: none;">Image by pngtree.com </a>
-</div>
-
-
+  </script>
 </body>
 </html>
