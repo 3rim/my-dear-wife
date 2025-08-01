@@ -206,6 +206,7 @@
 
   <!-- 🎵 Audio -->
   <audio id="birthday-audio" src="assets/happy-birthday-piano.mp3" preload="auto"></audio>
+  <audio id="voice-message" src="assets/voice-message.mp3" preload="auto"></audio>
 
   <!-- 📸 Credit -->
   <a class="credit" href="https://pngtree.com/freebackground/majestic-view-of-kaaba-in-mecca-during-sunset_15990382.html" target="_blank">
@@ -214,35 +215,47 @@
 
   <script>
     function openBirthdayBox() {
-      document.getElementById('message-wrapper').style.display = 'block';
-      document.getElementById('birthday-audio').play();
+    document.getElementById('message-wrapper').style.display = 'block';
+    const piano = document.getElementById('birthday-audio');
+    const voice = document.getElementById('voice-message');
 
-      // 🎉 Confetti at 3s
-      setTimeout(() => createConfetti(), 3000);
+    piano.currentTime = 0;
+    voice.currentTime = 0;
 
-      // ✨ Extra romantic line at 6s
-      setTimeout(() => {
+    piano.play();
+
+    // Confetti at 3s
+    setTimeout(() => createConfetti(), 3000);
+
+    // Extra romantic line at 6s
+    setTimeout(() => {
         document.getElementById('delayed-line').style.display = 'block';
-      }, 6000);
+    }, 6000);
 
-      // 💌 Note auto-appears at 12s
-      setTimeout(() => {
+    // Note auto-appears at 12s
+    setTimeout(() => {
         document.getElementById('auto-note').style.display = 'block';
-      }, 12000);
+    }, 12000);
 
-      // ❤️ Heart at 25s
-      setTimeout(() => {
+    // Heart at 25s
+    setTimeout(() => {
         document.getElementById('heart').style.display = 'block';
-      }, 25000);
+    }, 25000);
 
-      // 🕊️ Fade everything out at 44s
-      setTimeout(() => {
+    // ▶️ Voice message at 44s (when piano ends)
+    setTimeout(() => {
+        voice.play();
+    }, 44000);
+
+    // Hide message after full sequence (piano + voice = ~56s)
+    setTimeout(() => {
         document.getElementById('message-wrapper').style.display = 'none';
         document.getElementById('delayed-line').style.display = 'none';
         document.getElementById('auto-note').style.display = 'none';
         document.getElementById('heart').style.display = 'none';
-      }, 44000);
-    }
+    }, 56000);
+}
+
 
     function toggleNote() {
       const note = document.getElementById('love-note');
